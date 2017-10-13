@@ -1,25 +1,25 @@
 <?php
-
+require('Message.php');
 
 class MessageController {
 
     /**
      * @var DatabaseConfig
      */
-    protected $link;
+    protected $query;
 
     /**
      * Message constructor.
-     * @param PDO $link
+     * @param $query
      */
-    public function __construct(PDO $link)
+    public function __construct(QueryBuilder $query)
     {
-        $this->link = $link;
+        $this->query = $query;
     }
 
     public function getComment()
     {
-        return $this->link->query("*", "messages");
+        return $this->query->retrieveAll("messages", 'Message');
     }
 
     public function store()

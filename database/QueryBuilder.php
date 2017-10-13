@@ -9,7 +9,7 @@ class QueryBuilder {
      * QueryBuilder constructor.
      * @param $pdo
      */
-    public function __construct($pdo)
+    public function __construct(PDO $pdo)
     {
 
         $this->pdo = $pdo;
@@ -19,12 +19,11 @@ class QueryBuilder {
      * @param $table
      * @return mixed
      */
-    public function selectAll($table)
+    public function retrieveAll($table, $intoClass)
     {
         $statement = $this->pdo->prepare("SELECT * FROM " . $table);
         $statement->execute();
 
-        // Save the fetched OBjs into a Message class and return them
-        return $statement->fetchAll(PDO::FETCH_CLASS, 'Message');
+        return $statement->fetchAll(PDO::FETCH_CLASS, $intoClass);
     }
 }
