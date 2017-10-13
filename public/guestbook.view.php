@@ -10,11 +10,11 @@
 <body>   
     <div class="container">
 
-        <?php foreach ($message->index() as $index) { ?>
+        <?php foreach ($message->getComment() as $comment) { ?>
             <article>
-                <?= $index['user_name']; ?>
-                <?= $index['created_at']; ?>
-                <?= $index['comment']; ?>
+                <?= $comment->user_name; ?>
+                <?= $comment->created_at; ?>
+                <?= $comment->comment; ?>
             </article>
             <hr>
         <?php } ?>

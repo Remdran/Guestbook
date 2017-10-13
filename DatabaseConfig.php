@@ -1,12 +1,12 @@
 <?php
-
+require 'Message.php';
 class DatabaseConfig {
 
     protected $dbHost;
     protected $dbName;
     protected $dbUser;
     protected $dbPass;
-    protected $conn;
+    protected $pdo;
 
     public function __construct($dbHost, $dbName, $dbUser, $dbPass) {
         $this->dbHost = $dbHost;
@@ -17,21 +17,14 @@ class DatabaseConfig {
 
     public function connect()
     {
-        try {
-            $this->conn = new PDO("mysql:host=$this->dbHost;dbname=$this->dbName", $this->dbUser, $this->dbPass);
 
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            // echo "Connected";
-        }
-        catch(PDOException $e) {
-            echo "Connection Failed: " . $e->getMessage();
-        }
     }    
 
     public function query($term, $table)
     {
-        $sql = "SELECT " . $term . " FROM " . $table;
+        $statement = $this->pdo->prepare("SELECT" . $term . " FROM " . $table);
+        $statement->execute();
 
-        return $this->conn->query($sql);
+        return $statement->fetchAll(PDO::FETCH_CLASS, 'Message'); // Save the fetched OBjs into a Message class
     }
 }

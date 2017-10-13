@@ -7,26 +7,19 @@ class MessageController {
      * @var DatabaseConfig
      */
     protected $link;
-    protected $messageArray;
 
     /**
      * Message constructor.
-     * @param $messages
+     * @param PDO $link
      */
-    public function __construct(DatabaseConfig $link)
+    public function __construct(PDO $link)
     {
         $this->link = $link;
     }
 
-    public function index()
+    public function getComment()
     {
-        $sql = $this->link->query("*", "messages");
-
-        foreach ($sql as $row) {
-            $this->messageArray[] = $row;
-        }
-
-        return $this->messageArray;
+        return $this->link->query("*", "messages");
     }
 
     public function store()

@@ -1,9 +1,9 @@
 <?php
-include("DatabaseConfig.php");
-$link = new DatabaseConfig("localhost", "guestbook", "root", "");
-$link->connect();
-include("MessageController.php");
-$message = new MessageController($link);
-include("public/Guestbook.php");
-include("routes.php");
+require("database/Connection.php");
+require("MessageController.php");
+require("routes.php");
 
+$pdo = Connection::make();
+$message = new MessageController($pdo);
+
+require("public/guestbook.view.php");
