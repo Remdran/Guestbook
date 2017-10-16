@@ -19,7 +19,7 @@
             <hr>
         <?php } ?>
 
-        <form method="POST" action="/routes.php?create=true">
+        <form method="POST" action="/">
             <label for="name">Name:</label>
             <input type="text" name="name">
             <label for="comment">Comment:</label>

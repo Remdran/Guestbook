@@ -1,4 +1,4 @@
 <?php
 
-require("bootstrap.php");
-require("public/guestbook.view.php");
+require("core/bootstrap.php");
+

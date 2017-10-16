@@ -26,4 +26,13 @@ class QueryBuilder {
 
         return $statement->fetchAll(PDO::FETCH_CLASS, $intoClass);
     }
+
+    public function storeToDB()
+    {
+        // Bind these to variables and other security
+        $statement = $this->pdo->prepare("INSERT INTO messages (user_name, comment, created_at) VALUES ('" .
+            $_POST['name'] . "', '" . $_POST['comment'] . "', '" . date('Y-m-d h:i:s') . "')");
+
+        $statement->execute();
+    }
 }

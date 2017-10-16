@@ -24,7 +24,7 @@ class MessageController {
 
     public function store()
     {
-        var_dump($_POST);
+        $this->query->storeToDB();
     }
 
     public function show()
