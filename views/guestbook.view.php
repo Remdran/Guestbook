@@ -12,9 +12,9 @@
 
         <?php foreach ($message->getComment() as $comment) { ?>
             <article>
-                <?= $comment->user_name; ?>
-                <?= $comment->created_at; ?>
-                <?= $comment->comment; ?>
+                <?= $comment->getName(); ?>
+                <?= $comment->getDate(); ?>
+                <?= $comment->getComment(); ?>
             </article>
             <hr>
         <?php } ?>

@@ -22,9 +22,9 @@ class MessageController {
         return $this->query->retrieveAll("messages", 'Message');
     }
 
-    public function store()
+    public function store(Message $comment)
     {
-        $this->query->storeToDB();
+        $this->query->storeToDB($comment->getName(), $comment->getComment(), $comment->getDate());
     }
 
     public function show()
